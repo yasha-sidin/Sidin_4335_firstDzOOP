@@ -5,6 +5,7 @@ import java.util.List;
 import Domen.Product;
 
 public class VendingMachine {
+//    int productIdByVendingId;
     private int volume;
     private List<Product> products;
     /**
@@ -36,5 +37,32 @@ public class VendingMachine {
         products.add(prod);
     }
 
+    public String buyProduct(Product prod, double money) {
+        double price = prod.getPrice();
+        if (price <= money) {
+            double change = money - price;
+            this.products.remove(prod);
+            return "You bought a " + prod.getProductName() + ". Congratulate you! Your change: " + change;
+        } else {
+            return "There is not enough money to buy this product";
+        }
+    }
 
+    public String getStringProducts() {
+        String productsAll = "";
+        for (Product prod : this.products) {
+            productsAll += prod.toString() + "\n";
+        }
+        return productsAll;
+    }
+
+
+    public boolean contains(int checkProductId) {
+        for(Product item : this.products) {
+            if (item.getProductId() == checkProductId) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

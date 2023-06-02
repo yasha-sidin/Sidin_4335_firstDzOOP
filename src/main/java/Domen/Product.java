@@ -2,22 +2,22 @@ package Domen;
 
 public class Product {
 
-    private int productId;
+    private static int count = 0;
+    private int productId = 0;
     private String productName;//for displaying to customer
     private String productCategory;
     private double price;
-
     /**
      * Create a product for VM
      *
-     * @param productId       id of product
+     *
      * @param productName     name of product
      * @param productCategory category of product
      * @param price           value of price of this product
      * @throws Exception      if the price < 0
      */
-    public Product(int productId, String productName, String productCategory, double price) throws Exception{
-        this.productId = productId;
+    public Product(String productName, String productCategory, double price) throws Exception{
+        productId = ++count;
         this.productName = productName;
         this.productCategory = productCategory;
         this.price = price;
@@ -27,18 +27,18 @@ public class Product {
         return productId;
     }
 
+
     // public void setProductId(int productId) {
     //     this.productId = productId;
     // }
-
     public String getProductName() {
         return productName;
     }
 
+
     // public void setProductName(String productName) {
     //     this.productName = productName;
     // }
-
     public String getProductCategory() {
         return productCategory;
     }
@@ -58,11 +58,15 @@ public class Product {
         this.price = price;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     @Override
     public String toString()
     {
-        return "Product{" +
-                "name: '" + productName + '\'' +
+        return "Product{" + "ProductId: " + productId +
+                ", name: '" + productName + '\'' +
                 ", category: '" + productCategory + '\'' +
                 ", cost: " + price +
                 '}';
